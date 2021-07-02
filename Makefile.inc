@@ -1,0 +1,2 @@
+
+COPTS += -DMAKE_EV3
