@@ -167,7 +167,7 @@ void BlockMove::blockCarry()  //ブロックを運ぶ
 {
   distance = sonarSensor.getDistance(); //距離を取得する
   printf("%dcm\n", distance);
-  if (distance < 30)
+  if (distance < 28)
   {
     wheelInit();
   }
