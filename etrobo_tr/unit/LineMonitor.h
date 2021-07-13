@@ -20,6 +20,7 @@ public:
     int nowBrightness();
     void setThreshold(int8_t threshold);
     bool getBlueCount();
+    int getColorNumber();
 
 private:
     static const int8_t INITIAL_THRESHOLD;

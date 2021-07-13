@@ -15,7 +15,7 @@ const int8_t LineMonitor::INITIAL_THRESHOLD = 20; // 黒色の光センサ値
  * コンストラクタ
  * @param colorSensor カラーセンサ
  */
-LineMonitor::LineMonitor( ev3api::ColorSensor &colorSensor)
+LineMonitor::LineMonitor(ev3api::ColorSensor &colorSensor)
     : mColorSensor(colorSensor),
       mThreshold(INITIAL_THRESHOLD)
 {
@@ -25,7 +25,7 @@ LineMonitor::LineMonitor( ev3api::ColorSensor &colorSensor)
  * 現在通っている線の線の反射を返す
  * @retval nowBrightness  現在の反射光の値
  */
-int LineMonitor::nowBrightness() 
+int LineMonitor::nowBrightness()
 {
     // 光センサからの取得値を見る
     int nowBrightness = mColorSensor.getBrightness();
@@ -41,16 +41,26 @@ void LineMonitor::setThreshold(int8_t threshold)
     mThreshold = threshold;
 }
 
+/**
+ * 青い線の通過回数を調べて、場合によって停止する
+ * @retval false 青線を規定の数以上検知した
+ * @retval true 青線を検知する(LineTracerの続行)
+ */
 bool LineMonitor::getBlueCount()
 {
     printf("blueCount=%d\n", blueCount);
-    if (blueCount > 200)
+    if (blueCount > 40)
     {
         return false;
     }
     else if (mColorSensor.getColorNumber() == COLOR_BLUE)
     {
         blueCount++;
-        return true;
     }
+    return true;
+}
+
+int LineMonitor::getColorNumber()
+{
+    return mColorSensor.getColorNumber();
 }

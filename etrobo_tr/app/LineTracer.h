@@ -29,7 +29,7 @@ private:
     TouchMonitor *mTouchMonitor;
     float calc_prop_value(int nowBrightness);
     bool mStartButton;
-    bool mTracerFinish=false;
+    bool mTracerFinish = false;
 };
 
 #endif // EV3_APP_LINETRACER_H_

@@ -51,9 +51,10 @@ void LineTracer::run()
         // 走行を行う
         mWalker->run();
     }
-    else
+    else //シナリオトレースに移行する
     {
         mWalker->stop();
+        mTracerFinish = true;
     }
 }
 
@@ -69,4 +70,9 @@ float LineTracer::calc_prop_value(int nowBrightness)
     int diff = nowBrightness - target;
     float turn = Kp * diff + bias;
     return turn;
+}
+
+bool LineTracer::isFinish()
+{
+    return mTracerFinish;
 }

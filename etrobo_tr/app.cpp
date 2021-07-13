@@ -8,6 +8,7 @@
 
 #include "app.h"
 #include "LineTracer.h"
+#include "ScenarioRunner.h"
 
 // デストラクタ問題の回避
 // https://github.com/ETrobocon/etroboEV3/wiki/problem_and_coping
@@ -16,6 +17,7 @@ void *__dso_handle = 0;
 // using宣言
 using ev3api::ColorSensor;
 using ev3api::Motor;
+using ev3api::Steering;
 using ev3api::TouchSensor;
 
 // Device objects
@@ -24,12 +26,15 @@ ColorSensor gColorSensor(PORT_2);
 Motor gLeftWheel(PORT_C);
 Motor gRightWheel(PORT_B);
 TouchSensor gTouchSensor(PORT_1);
+Steering gSteering(gLeftWheel, gRightWheel);
 
 // オブジェクトの定義
 static LineMonitor *gLineMonitor;
 static Walker *gWalker;
 static TouchMonitor *gTouchMonitor;
 static LineTracer *gLineTracer;
+static RobotTurn *gRobotTurn;
+static ScenarioRunner *gScenarioRunner;
 
 /**
  * EV3システム生成
@@ -41,7 +46,9 @@ user_system_create()
     gWalker = new Walker(gLeftWheel, gRightWheel);
     gLineMonitor = new LineMonitor(gColorSensor);
     gTouchMonitor = new TouchMonitor(gTouchSensor);
+    gRobotTurn = new RobotTurn(gSteering);
     gLineTracer = new LineTracer(gLineMonitor, gWalker, gTouchMonitor);
+    gScenarioRunner = new ScenarioRunner(gLineMonitor, gWalker, gRobotTurn);
 
     // 初期化完了通知
     ev3_led_set_color(LED_ORANGE);
@@ -59,6 +66,8 @@ static void user_system_destroy()
     delete gLineMonitor;
     delete gWalker;
     delete gTouchMonitor;
+    delete gRobotTurn;
+    delete gScenarioRunner;
 }
 
 /**
@@ -76,6 +85,12 @@ void main_task(intptr_t unused)
     // 周期ハンドラ停止
     stp_cyc(CYC_TRACER);
 
+    // sta_cyc(CYC_SCENARIORUNNER);
+
+    slp_tsk();
+
+    // stp_cyc(CYC_SCENARIORUNNER);
+
     user_system_destroy(); // 終了処理
 
     ext_tsk();
@@ -86,9 +101,9 @@ void main_task(intptr_t unused)
  */
 void tracer_task(intptr_t exinf)
 {
-    if (ev3_button_is_pressed(BACK_BUTTON))
+    if (gLineTracer->isFinish())
     {
-        wup_tsk(MAIN_TASK); // バックボタン押下
+        gScenarioRunner->run(); // バックボタン押下
     }
     else
     {

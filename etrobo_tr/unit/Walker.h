@@ -11,17 +11,18 @@
 
 #include "Motor.h"
 
-class Walker {
+class Walker
+{
 public:
     static const int LOW;
     static const int NORMAL;
     static const int HIGH;
-    
+
     static const int RIGHT;
     static const int LEFT;
 
-    Walker(ev3api::Motor& leftWheel,
-                    ev3api::Motor& rightWheel);
+    Walker(ev3api::Motor &leftWheel,
+           ev3api::Motor &rightWheel);
 
     void init();
     void run();
@@ -29,10 +30,10 @@ public:
     void stop();
 
 private:
-    ev3api::Motor& mLeftWheel;
-    ev3api::Motor& mRightWheel;
+    ev3api::Motor &mLeftWheel;
+    ev3api::Motor &mRightWheel;
     int mForward;
     int mTurn;
 };
 
-#endif  // EV3_UNIT_WALKER_H_
+#endif // EV3_UNIT_WALKER_H_

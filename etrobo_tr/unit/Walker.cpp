@@ -67,6 +67,9 @@ void Walker::setCommand(int forward, int turn)
     mTurn = turn;
 }
 
+/**
+ * ロボットを停止させる
+ */
 void Walker::stop()
 {
     mLeftWheel.stop();

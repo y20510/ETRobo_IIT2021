@@ -4,6 +4,8 @@ APPL_CXXOBJS += \
 	Walker.o \
 	LineMonitor.o \
 	TouchMonitor.o \
+	RobotTurn.o \
+	ScenarioRunner.o \
 	LineTracer.o
 
 SRCLANG := c++
