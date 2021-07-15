@@ -5,7 +5,10 @@ APPL_CXXOBJS += \
 	LineMonitor.o \
 	TouchMonitor.o \
 	RobotTurn.o \
+	MeasureDistance.o \
 	ScenarioRunner.o \
+	ArmMove.o \
+	BlockCarry.o \
 	LineTracer.o
 
 SRCLANG := c++

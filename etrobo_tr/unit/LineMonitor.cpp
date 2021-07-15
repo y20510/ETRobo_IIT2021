@@ -8,9 +8,6 @@
 
 #include "LineMonitor.h"
 
-// 定数宣言
-const int8_t LineMonitor::INITIAL_THRESHOLD = 20; // 黒色の光センサ値
-
 /**
  * コンストラクタ
  * @param colorSensor カラーセンサ
@@ -29,6 +26,7 @@ int LineMonitor::nowBrightness()
 {
     // 光センサからの取得値を見る
     int nowBrightness = mColorSensor.getBrightness();
+    printf("nowBrightness=%d\n", mColorSensor.getBrightness());
     return nowBrightness;
 }
 
@@ -43,20 +41,25 @@ void LineMonitor::setThreshold(int8_t threshold)
 
 /**
  * 青い線の通過回数を調べて、場合によって停止する
- * @retval false 青線を規定の数以上検知した
+ * @retval false 青ゾーンを２回検知した
  * @retval true 青線を検知する(LineTracerの続行)
  */
 bool LineMonitor::getBlueCount()
 {
     printf("blueCount=%d\n", blueCount);
-    if (blueCount > 40)
+    nowColor = mColorSensor.getColorNumber();
+    printf("nowColor=%d\n", nowColor);
+    if (blueCount == 2)
     {
         return false;
     }
-    else if (mColorSensor.getColorNumber() == COLOR_BLUE)
+    else if (nowColor == COLOR_WHITE && oldColor == COLOR_BLUE)
     {
+        printf("nowColor=%d\n", mColorSensor.getColorNumber());
         blueCount++;
     }
+    oldColor = nowColor;
+    printf("oldColor=%d\n", oldColor);
     return true;
 }
 

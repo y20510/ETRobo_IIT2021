@@ -12,12 +12,15 @@
 #include "LineMonitor.h"
 #include "Walker.h"
 #include "TouchMonitor.h"
+#include "ArmMove.h"
 
 class LineTracer
 {
 public:
     LineTracer(LineMonitor *lineMonitor,
-               Walker *walker, TouchMonitor *touchMonitor);
+               Walker *walker,
+               TouchMonitor *touchMonitor,
+               ArmMove *armMove);
 
     void run();
     bool isFinish();
@@ -27,9 +30,11 @@ private:
     Walker *mWalker;
     bool mIsInitialized;
     TouchMonitor *mTouchMonitor;
+    ArmMove *mArmMove;
     float calc_prop_value(int nowBrightness);
     bool mStartButton;
     bool mTracerFinish = false;
+    bool mArmSet;
 };
 
 #endif // EV3_APP_LINETRACER_H_

@@ -34,14 +34,15 @@ void ScenarioRunner::run()
   switch (scene)
   {
   case 0:
-    if (mColck.now() < 4430000)
+    if (mColck.now() < 4400000)
     {
+      printf("nowTime=%d\n", mColck.now());
       int nowBrightness = mLineMonitor->nowBrightness();
 
       // 走行体の向きを計算する
       float turn = calc_prop_value(nowBrightness);
 
-      mWalker->setCommand(Walker::NORMAL, turn);
+      mWalker->setCommand(Walker::HIGH, turn);
 
       // 走行を行う
       mWalker->run();
@@ -50,16 +51,19 @@ void ScenarioRunner::run()
     {
       scene = 1;
     }
+    break;
   case 1:
-    mRobotTurn->turnRightAngle(25, 100);
+    mRobotTurn->turnRightAngle(40, 100);
     if (mLineMonitor->getColorNumber() == COLOR_BLACK)
     {
       scene = 2;
       mColck.reset();
     }
+    break;
   case 2:
-    if (mColck.now() < 400000)
+    if (mColck.now() < 1700000)
     {
+      printf("nowTime=%d\n", mColck.now());
       int nowBrightness = mLineMonitor->nowBrightness();
       float turn = calc_prop_value(nowBrightness);
       mWalker->setCommand(Walker::LOW, turn);
@@ -70,6 +74,7 @@ void ScenarioRunner::run()
       mWalker->stop();
       mScenarioFinish = true;
     }
+    break;
   }
 }
 

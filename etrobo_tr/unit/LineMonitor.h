@@ -18,15 +18,14 @@ public:
     explicit LineMonitor(ev3api::ColorSensor &colorSensor);
 
     int nowBrightness();
-    void setThreshold(int8_t threshold);
     bool getBlueCount();
     int getColorNumber();
 
 private:
-    static const int8_t INITIAL_THRESHOLD;
     ev3api::ColorSensor &mColorSensor;
-    int8_t mThreshold;
     int blueCount = 0;
+    int nowColor = 0;
+    int oldColor = 0;
 };
 
 #endif // EV3_UNIT_LINEMONITOR_H_

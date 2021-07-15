@@ -13,14 +13,19 @@
  * @param lineMonitor     ライン判定
  * @param walker 走行
  * @param touchMonitor　タッチセンサーの判定
+ * @param armMove アームモーター
  */
 LineTracer::LineTracer(LineMonitor *lineMonitor,
-                       Walker *walker, TouchMonitor *touchMonitor)
+                       Walker *walker,
+                       TouchMonitor *touchMonitor,
+                       ArmMove *armMove)
     : mLineMonitor(lineMonitor),
       mWalker(walker),
       mTouchMonitor(touchMonitor),
+      mArmMove(armMove),
       mIsInitialized(false),
-      mStartButton(false)
+      mStartButton(false),
+      mArmSet(false)
 {
 }
 
@@ -32,6 +37,8 @@ void LineTracer::run()
     if (mIsInitialized == false)
     {
         mWalker->init();
+        //mArmMove->armStop();
+
         mIsInitialized = true;
     }
     if (mStartButton == false) //タッチセンサーが押されるまで走らない
@@ -46,7 +53,7 @@ void LineTracer::run()
         // 走行体の向きを計算する
         float turn = calc_prop_value(nowBrightness);
 
-        mWalker->setCommand(Walker::LOW, turn);
+        mWalker->setCommand(Walker::NORMAL, turn);
 
         // 走行を行う
         mWalker->run();
