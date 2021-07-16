@@ -23,6 +23,10 @@ ScenarioRunner::ScenarioRunner(LineMonitor *lineMonitor,
 
 /**
  * ライントレース（シナリオラン）
+ * ３段階に分けており scene によって管理する
+ * scene=0が指定の時間ライントレース（真っ直ぐ）
+ * scene=1が黒線を感知するまで右回転
+ * scene=2がブロック運び開始位置までのライントレース
  */
 void ScenarioRunner::run()
 {
@@ -34,7 +38,7 @@ void ScenarioRunner::run()
   switch (scene)
   {
   case 0:
-    if (mColck.now() < 4400000)
+    if (mColck.now() < 4300000)
     {
       printf("nowTime=%d\n", mColck.now());
       int nowBrightness = mLineMonitor->nowBrightness();
@@ -80,6 +84,7 @@ void ScenarioRunner::run()
 
 /**
  * 走行体の向きを計算する
+ * @param nowBrightness 現在の反射光の強さ
  * @retval turn 目標値との差
  */
 float ScenarioRunner::calc_prop_value(int nowBrightness)
@@ -92,6 +97,10 @@ float ScenarioRunner::calc_prop_value(int nowBrightness)
   return turn;
 }
 
+/**
+ * 終了の判定
+ * @retval mScenarioFinish シナリオランナーが終わったか true:終了
+ */
 bool ScenarioRunner::isFinish()
 {
   return mScenarioFinish;

@@ -10,10 +10,12 @@ public:
     BlockCarry(MeasureDistance *measureDistance,
                Walker *walker);
     void run();
+    bool isFinish();
 
 private:
     MeasureDistance *mMeasureDistance;
     Walker *mWalker;
+    bool finishStatus;
 };
 
-#endif  //EV3_APP_BLOCKCARRY_H_
+#endif //EV3_APP_BLOCKCARRY_H_

@@ -2,8 +2,7 @@
 
 /**
  * コンストラクタ
- * @param  leftWheel 左モーター
- * @param  rightWheel 右モーター
+ * @param  steering ステアリング（両輪）
  */
 RobotTurn::RobotTurn(ev3api::Steering &steering)
     : mSteering(steering)

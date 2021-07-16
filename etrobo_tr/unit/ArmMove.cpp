@@ -9,6 +9,10 @@ ArmMove::ArmMove(ev3api::Motor &armMotor)
 {
 }
 
+/**
+ * アームをセットする
+ * @retval isFinish true:セット完了
+ */
 bool ArmMove::setArm()
 {
     if (mArmMotor.getCount() == -46)
@@ -28,18 +32,12 @@ bool ArmMove::setArm()
     }
 }
 
+/**
+ * 終了の時finishStatusをtrueに
+ * @retval finishStatus 終了判定
+ */
 bool ArmMove::isFinish()
 {
     finishStatus = true;
     return finishStatus;
-}
-
-int ArmMove::getCount()
-{
-    return mArmMotor.getCount();
-}
-
-void ArmMove::armStop()
-{
-    mArmMotor.stop();
 }

@@ -92,16 +92,12 @@ void main_task(intptr_t unused)
     // 周期ハンドラ開始
     sta_cyc(CYC_TRACER);
 
-    slp_tsk(); // バックボタンが押されるまで待つ
+    slp_tsk(); // ブロック運び終了まで待つ
 
     // 周期ハンドラ停止
     stp_cyc(CYC_TRACER);
 
-    // sta_cyc(CYC_SCENARIORUNNER);
-
     slp_tsk();
-
-    // stp_cyc(CYC_SCENARIORUNNER);
 
     user_system_destroy(); // 終了処理
 
@@ -127,6 +123,10 @@ void tracer_task(intptr_t exinf)
     else
     {
         gLineTracer->run(); // 走行
+    }
+    if (gBlockCarry->isFinish())
+    {
+        wup_tsk(MAIN_TASK);
     }
 
     ext_tsk();

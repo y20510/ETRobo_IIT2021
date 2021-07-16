@@ -9,7 +9,7 @@
 #include "Walker.h"
 
 // 定数宣言
-const int Walker::LOW = 16;    // 低速
+const int Walker::LOW = 15;    // 低速
 const int Walker::NORMAL = 30; // 通常
 const int Walker::HIGH = 50;   // 高速
 

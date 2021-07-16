@@ -13,8 +13,8 @@
  * @param colorSensor カラーセンサ
  */
 LineMonitor::LineMonitor(ev3api::ColorSensor &colorSensor)
-    : mColorSensor(colorSensor),
-      mThreshold(INITIAL_THRESHOLD)
+    : mColorSensor(colorSensor)
+
 {
 }
 
@@ -28,15 +28,6 @@ int LineMonitor::nowBrightness()
     int nowBrightness = mColorSensor.getBrightness();
     printf("nowBrightness=%d\n", mColorSensor.getBrightness());
     return nowBrightness;
-}
-
-/**
- * ライン閾値を設定する
- * @param threshold ライン閾値
- */
-void LineMonitor::setThreshold(int8_t threshold)
-{
-    mThreshold = threshold;
 }
 
 /**

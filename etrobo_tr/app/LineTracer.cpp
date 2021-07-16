@@ -79,6 +79,10 @@ float LineTracer::calc_prop_value(int nowBrightness)
     return turn;
 }
 
+/**
+ * ライントレースの終了判定
+ * @retval mTracerFinish true:終了
+ */
 bool LineTracer::isFinish()
 {
     return mTracerFinish;
