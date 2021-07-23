@@ -3,15 +3,15 @@
 
 #include "SonarSensor.h"
 
-class MeasureDistance{
-    public:
+class MeasureDistance
+{
+public:
     MeasureDistance(ev3api::SonarSensor &sonarSensor);
     int getDistance();
 
-    private:
+private:
     ev3api::SonarSensor &mSonarSensor;
     int distance;
-
 };
 
 #endif //UNIT_MEASUREDISTANCE_H_

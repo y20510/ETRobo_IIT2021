@@ -118,7 +118,7 @@ void LineTracer::setTimeSpeed(int time, int speed)
 {
     if (lClock.now() < time)
     {
-        printf("scene=%d nowTime=%d\n", scene, lClock.now());
+        //printf("scene=%d nowTime=%d\n", scene, lClock.now());
         int nowBrightness = mLineMonitor->nowBrightness();
         float turn = calc_prop_value(nowBrightness);
         mWalker->setCommand(speed, turn);

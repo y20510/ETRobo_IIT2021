@@ -13,8 +13,6 @@ const int Walker::LOW = 8;    // 低速
 const int Walker::NORMAL = 30; // 通常
 const int Walker::HIGH = 50;   // 高速
 
-const int Walker::RIGHT = 0; // 左方向
-const int Walker::LEFT = 1;  // 右方向
 
 /**
  * コンストラクタ
@@ -26,7 +24,7 @@ Walker::Walker(ev3api::Motor &leftWheel,
     : mLeftWheel(leftWheel),
       mRightWheel(rightWheel),
       mForward(LOW),
-      mTurn(RIGHT)
+      mTurn(0)
 {
 }
 

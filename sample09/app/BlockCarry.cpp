@@ -7,10 +7,8 @@
  * @param robotTurn ロボットターンクラス
  */
 BlockCarry::BlockCarry(MeasureDistance *measureDistance,
-                       //RobotTurn *robotTurn,
                        Walker *walker)
     : mMeasureDistance(measureDistance),
-      //mRobotTurn(robotTurn),
       mWalker(walker),
       finishStatus(false)
 {
@@ -30,7 +28,6 @@ void BlockCarry::run()
   {
     mWalker->setCommand(Walker::NORMAL, 0);
     mWalker->run();
-    //mRobotTurn->turnRightAngle(50, 0);
   }
 }
 

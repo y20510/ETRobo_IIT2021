@@ -1,9 +1,6 @@
 #include "ScenarioRunner.h"
 #include "Clock.h"
 
-using ev3api::Clock;
-Clock mColck;
-
 /**
  * コンストラクタ
  * @param lineMonitor ライン判定
@@ -32,15 +29,15 @@ void ScenarioRunner::run()
 {
   if (mIsInitialized == false)
   {
-    mColck.reset();
+    sClock.reset();
     mIsInitialized = true;
   }
   switch (scene)
   {
   case 0:
-    if (mColck.now() < 4300000)
+    if (sClock.now() < 4300000)
     {
-      printf("nowTime=%d\n", mColck.now());
+      //printf("nowTime=%d\n", sClock.now());
       int nowBrightness = mLineMonitor->nowBrightness();
 
       // 走行体の向きを計算する
@@ -61,13 +58,13 @@ void ScenarioRunner::run()
     if (mLineMonitor->getColorNumber() == COLOR_BLACK)
     {
       scene = 2;
-      mColck.reset();
+      sClock.reset();
     }
     break;
   case 2:
-    if (mColck.now() < 2400000)
+    if (sClock.now() < 3000000)
     {
-      printf("nowTime=%d\n", mColck.now());
+      //printf("nowTime=%d\n", sClock.now());
       int nowBrightness = mLineMonitor->nowBrightness();
       float turn = calc_prop_value(nowBrightness);
       mWalker->setCommand(Walker::LOW, turn);

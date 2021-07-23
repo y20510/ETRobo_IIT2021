@@ -4,6 +4,9 @@
 #include "LineMonitor.h"
 #include "Walker.h"
 #include "RobotTurn.h"
+#include "Clock.h"
+
+using ::ev3api::Clock;
 
 class ScenarioRunner
 {
@@ -22,6 +25,7 @@ private:
     bool mIsInitialized;
     int scene = 0;
     bool mScenarioFinish;
+    Clock sClock;
 };
 
 #endif //EV3_APP_SCENARIORUNNER_H_

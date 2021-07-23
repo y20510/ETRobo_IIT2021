@@ -26,7 +26,7 @@ int LineMonitor::nowBrightness()
 {
     // 光センサからの取得値を見る
     int nowBrightness = mColorSensor.getBrightness();
-    printf("nowBrightness=%d\n", mColorSensor.getBrightness());
+    //printf("nowBrightness=%d\n", mColorSensor.getBrightness());
     return nowBrightness;
 }
 
@@ -37,20 +37,20 @@ int LineMonitor::nowBrightness()
  */
 bool LineMonitor::getBlueCount()
 {
-    printf("blueCount=%d\n", blueCount);
+    //printf("blueCount=%d\n", blueCount);
     nowColor = mColorSensor.getColorNumber();
-    printf("nowColor=%d\n", nowColor);
+    //printf("nowColor=%d\n", nowColor);
     if (blueCount == 2)
     {
         return false;
     }
     else if (nowColor == COLOR_WHITE && oldColor == COLOR_BLUE)
     {
-        printf("nowColor=%d\n", mColorSensor.getColorNumber());
+        //printf("nowColor=%d\n", mColorSensor.getColorNumber());
         blueCount++;
     }
     oldColor = nowColor;
-    printf("oldColor=%d\n", oldColor);
+    //printf("oldColor=%d\n", oldColor);
     return true;
 }
 
