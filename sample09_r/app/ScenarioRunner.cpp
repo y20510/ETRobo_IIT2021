@@ -54,7 +54,7 @@ void ScenarioRunner::run()
     }
     break;
   case 1:
-    mRobotTurn->turnRight(40, 100);
+    mRobotTurn->turnRight(40, -100);
     if (mLineMonitor->getColorNumber() == COLOR_BLACK)
     {
       scene = 2;
