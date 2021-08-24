@@ -1,4 +1,5 @@
 #include "ScenarioRunner.h"
+#include "Clock.h"
 
 /**
  * コンストラクタ
@@ -29,6 +30,7 @@ void ScenarioRunner::run()
   if (mIsInitialized == false)
   {
     sClock.reset();
+    mWalker->init();
     mIsInitialized = true;
   }
   switch (scene)
@@ -36,6 +38,7 @@ void ScenarioRunner::run()
   case 0:
     if (sClock.now() < 4300000)
     {
+      //printf("nowTime=%d\n", sClock.now());
       int nowBrightness = mLineMonitor->nowBrightness();
 
       // 走行体の向きを計算する
@@ -52,7 +55,7 @@ void ScenarioRunner::run()
     }
     break;
   case 1:
-    mRobotTurn->turnRight(40, -100);  //右回りの変更点
+    mRobotTurn->turnRight(40, 100); //turnRatioが"+"時右
     if (mLineMonitor->getColorNumber() == COLOR_BLACK)
     {
       scene = 2;
@@ -62,6 +65,7 @@ void ScenarioRunner::run()
   case 2:
     if (sClock.now() < 3000000)
     {
+      //printf("nowTime=%d\n", sClock.now());
       int nowBrightness = mLineMonitor->nowBrightness();
       float turn = calc_prop_value(nowBrightness);
       mWalker->setCommand(Walker::LOW, turn);

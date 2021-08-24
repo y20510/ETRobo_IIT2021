@@ -35,6 +35,7 @@ private:
     float calc_prop_value(int nowBrightness);
     bool mStartButton;
     bool mTracerFinish = false;
+    bool mArmSet;
     int scene = 0;
     Clock lClock;
 };

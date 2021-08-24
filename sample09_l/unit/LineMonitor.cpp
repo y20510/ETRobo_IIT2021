@@ -36,7 +36,6 @@ int LineMonitor::nowBrightness()
  */
 bool LineMonitor::getBlueCount()
 {
-    //printf("blueCount=%d\n", blueCount);
     nowColor = mColorSensor.getColorNumber();
     if (blueCount == 2)
     {
@@ -47,10 +46,13 @@ bool LineMonitor::getBlueCount()
         blueCount++;
     }
     oldColor = nowColor;
-    //printf("oldColor=%d\n", oldColor);
     return true;
 }
 
+/**
+ * カラーナンバーの取得
+ * @retval mColorSensor.getColorNumber() カラーナンバー
+ */
 int LineMonitor::getColorNumber()
 {
     return mColorSensor.getColorNumber();

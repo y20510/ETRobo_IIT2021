@@ -22,7 +22,8 @@ LineTracer::LineTracer(LineMonitor *lineMonitor,
       mWalker(walker),
       mTouchMonitor(touchMonitor),
       mIsInitialized(false),
-      mStartButton(false)
+      mStartButton(false),
+      mArmSet(false)
 {
 }
 
@@ -34,7 +35,6 @@ void LineTracer::run()
     if (mIsInitialized == false)
     {
         mWalker->init();
-
         mIsInitialized = true;
     }
     if (mStartButton == false) //タッチセンサーが押されるまで走らない
