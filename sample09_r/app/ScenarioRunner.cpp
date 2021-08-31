@@ -60,7 +60,7 @@ void ScenarioRunner::run()
     }
     break;
   case 2:
-    if (sClock.now() < 3000000)
+    if (sClock.now() < 2900000)
     {
       int nowBrightness = mLineMonitor->nowBrightness();
       float turn = calc_prop_value(nowBrightness);
