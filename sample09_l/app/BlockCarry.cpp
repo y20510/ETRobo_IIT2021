@@ -26,7 +26,7 @@ void BlockCarry::run()
   }
   else
   {
-    mWalker->setCommand(Walker::LOW, 0);
+    mWalker->setCommand(Walker::NORMAL, 0);
     mWalker->run();
   }
 }

@@ -36,7 +36,7 @@ void ScenarioRunner::run()
   switch (scene)
   {
   case 0:
-    if (sClock.now() < 4300000)
+    if (sClock.now() < 4350000)
     {
       //printf("nowTime=%d\n", sClock.now());
       int nowBrightness = mLineMonitor->nowBrightness();
@@ -44,7 +44,7 @@ void ScenarioRunner::run()
       // 走行体の向きを計算する
       float turn = calc_prop_value(nowBrightness);
 
-      mWalker->setCommand(Walker::HIGH, turn);
+      mWalker->setCommand(Walker::sHIGH, turn);
 
       // 走行を行う
       mWalker->run();
@@ -68,7 +68,7 @@ void ScenarioRunner::run()
       //printf("nowTime=%d\n", sClock.now());
       int nowBrightness = mLineMonitor->nowBrightness();
       float turn = calc_prop_value(nowBrightness);
-      mWalker->setCommand(Walker::LOW, turn);
+      mWalker->setCommand(Walker::sLOW, turn);
       mWalker->run();
     }
     else

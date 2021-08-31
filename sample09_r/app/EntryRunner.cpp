@@ -22,19 +22,23 @@ void EntryRunner::run()
     }
     else
     {
-      mScenarioRunner.run(); // バックボタン押下
+      mScenarioRunner.run();
     }
   }
   else
   {
     mLineTracer.run(); // 走行
   }
-  if (mBlockCarry.isFinish())
+  if (mBlockCarry.isFinish()) //最後まで終了した
   {
     finishStatus = true;
   }
 }
 
+/**
+ * 終了したか調べる
+ * @retval finishStatus 終了状態
+ */
 bool EntryRunner::isFinish()
 {
   return finishStatus;

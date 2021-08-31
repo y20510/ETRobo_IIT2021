@@ -9,10 +9,11 @@
 #include "Walker.h"
 
 // 定数宣言
-const int Walker::LOW = 8;    // 低速
-const int Walker::NORMAL = 30; // 通常
-const int Walker::HIGH = 50;   // 高速
-
+const int Walker::lLOW = 30; // 低速
+const int Walker::sLOW = 8;
+const int Walker::NORMAL = 8; // 通常
+const int Walker::lHIGH = 70;  // 高速
+const int Walker::sHIGH = 50;
 
 /**
  * コンストラクタ
@@ -23,7 +24,7 @@ Walker::Walker(ev3api::Motor &leftWheel,
                ev3api::Motor &rightWheel)
     : mLeftWheel(leftWheel),
       mRightWheel(rightWheel),
-      mForward(LOW)
+      mForward(lLOW)
 {
 }
 

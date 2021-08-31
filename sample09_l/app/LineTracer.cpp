@@ -47,31 +47,31 @@ void LineTracer::run()
         switch (scene)
         {
         case 0:
-            setTimeSpeed(7000000, Walker::HIGH);
+            setTimeSpeed(5600000, Walker::lHIGH);
             break;
 
         case 1:
-            setTimeSpeed(6000000, Walker::NORMAL);
+            setTimeSpeed(4000000, Walker::lLOW);
             break;
         case 2:
-            setTimeSpeed(3000000, Walker::HIGH);
+            setTimeSpeed(2300000, Walker::lHIGH);
             break;
 
         case 3:
-            setTimeSpeed(4000000, Walker::NORMAL);
+            setTimeSpeed(4000000, Walker::lLOW);
             break;
 
         case 4:
-            setTimeSpeed(7000000, Walker::HIGH);
+            setTimeSpeed(5300000, Walker::lHIGH);
             break;
         case 5:
-            setTimeSpeed(2000000, Walker::NORMAL);
+            setTimeSpeed(2000000, Walker::lLOW);
             break;
         case 6:
-            setTimeSpeed(2000000, Walker::HIGH);
+            setTimeSpeed(2000000, Walker::lHIGH);
             break;
         default:
-            setTimeSpeed(5000000, Walker::NORMAL);
+            setTimeSpeed(5000000, Walker::lLOW);
             break;
         }
     }
@@ -112,6 +112,7 @@ bool LineTracer::isFinish()
  */
 void LineTracer::setTimeSpeed(int time, int speed)
 {
+    printf("scene:%d time:%d\n", scene, lClock.now());
     if (lClock.now() < time)
     {
         int nowBrightness = mLineMonitor->nowBrightness();
