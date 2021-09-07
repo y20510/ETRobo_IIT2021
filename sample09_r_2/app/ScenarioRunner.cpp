@@ -42,7 +42,7 @@ void ScenarioRunner::run()
       // 走行体の向きを計算する
       float turn = calc_prop_value(nowBrightness);
 
-      mWalker->setCommand(Walker::HIGH, turn);
+      mWalker->setCommand(Walker::sHIGH, turn);
 
       // 走行を行う
       mWalker->run();
@@ -65,7 +65,7 @@ void ScenarioRunner::run()
     {
       int nowBrightness = mLineMonitor->nowBrightness();
       float turn = calc_prop_value(nowBrightness);
-      mWalker->setCommand(Walker::LOW, turn);
+      mWalker->setCommand(Walker::sLOW, turn);
       mWalker->run();
     }
     else

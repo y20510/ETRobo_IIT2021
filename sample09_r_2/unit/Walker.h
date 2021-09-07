@@ -14,10 +14,12 @@
 class Walker
 {
 public:
-    static const int LOW;
-    static const int NORMAL;
-    static const int HIGH;
-    
+    static const int lLOW; // 低速
+    static const int sLOW;
+    static const int NORMAL; // 通常
+    static const int lHIGH;  // 高速
+    static const int sHIGH;
+
     Walker(ev3api::Motor &leftWheel,
            ev3api::Motor &rightWheel);
 
@@ -31,7 +33,7 @@ private:
     ev3api::Motor &mLeftWheel;
     ev3api::Motor &mRightWheel;
     int mForward;
-    int mTurn; 
+    int mTurn;
 };
 
 #endif // EV3_UNIT_WALKER_H_
